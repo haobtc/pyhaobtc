@@ -1,2 +1,0 @@
-class CodeError(BaseException):
-    pass

@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
 
 from .libs.auth_code import AuthCode
-from .libs.password import Password
 from .libs.access_token import AccessToken
 from .libs.request import Request
 from .libs.connection import Connection
 
-# callback or redirect_url
-# authorize_url
-# token_url
-# resource_url
+SITE_URL = 'https://haobtc.com'
+AUTHORIZE_URL = '/auth/oauth/authorize/'
+TOKEN_URL = '/auth/settings/oauth/get_token/'
+RESOURCE_URL = '/auth/settings/oauth/get_resource/'
 
 class Client(object):
 
     def __init__(self, client_id, client_secret, **opts):
         self.id = client_id
         self.secret = client_secret
-        self.site = opts.pop('site', 'https://haobtc.com')
-        self.opts = {'authorize_url': '/auth/oauth/authorize/',
-                     'token_url': '/oauth/token',
-                     'token_method': 'POST',
+        self.site = opts.pop('site', SITE_URL)
+        self.opts = {'authorize_url': AUTHORIZE_URL,
+                     'token_url': TOKEN_URL,
+                     'resource_url': RESOURCE_URL,
                      'connection_opts': {},
                      'raise_errors': True, }
         self.opts.update(opts)
@@ -33,20 +32,23 @@ class Client(object):
     def token_url(self, params={}):
         return Connection.build_url(self.site, path=self.opts['token_url'], params=params)
 
+    def resource_url(self, params={}):
+        return Connection.build_url(self.site, path=self.opts['resource_url'], params=params)
+
     def request(self, method, uri, **opts):
         uri = Connection.build_url(self.site, path=uri)
         response = Request(method, uri, **opts).request()
         return response
 
     def get_token(self, **opts):
-        self.response = self.request(self.opts['token_method'], self.token_url(), **opts)
-        # need check response code
+        self.response = self.request('POST', self.token_url(), **opts)
         opts.update(self.response.parsed)
-        return AccessToken.from_hash(self, **opts)
+        self.token = AccessToken.from_hash(self, **opts).token
+        return self.token
 
-    @property
-    def password(self):
-        return Password(self)
+    def get_resource(self, **opts):
+        self.response = self.request('GET', self.resource_url(opts), **opts)
+        return self.response.parsed
 
     @property
     def auth_code(self):

@@ -3,6 +3,7 @@ import json
 import requests
 
 from .response import Response
+from .errors import HaobtcOauthError
 
 
 class Request(object):
@@ -59,14 +60,9 @@ class Request(object):
                                     cert=self.cert)
 
         response = Response(response, parse=self.parse)
-        status = response.status_code
-        #TODO raise error
-        if status in (301, 302, 303, 307):
+        body = response.parsed
+        if body['code'] == 0:
             return response
-        elif 200 <= status < 400:
-            return response
-        elif 400 <= status < 500:
-            return response
-        elif 500 <= status < 600:
-            return response
-        return response
+        else:
+            raise HaobtcOauthError(body['code'], body['message'])
+

@@ -7,7 +7,9 @@
 
 MIT
 
-## [Reference](https://github.com/liluo/py-oauth2)
+## Reference
+
+https://github.com/liluo/py-oauth2
 
 ## Submitting a Pull Request
 * Fork the repository.

@@ -20,3 +20,8 @@ class AuthCode(Base):
         params.update(self.client_params)
         opts.update(params)
         return self.client.get_token(**opts)
+
+    def get_resource(self, **opts):
+        params = {'access_token': self.client.token}
+        opts.update(params)
+        return self.client.get_resource(**opts)
