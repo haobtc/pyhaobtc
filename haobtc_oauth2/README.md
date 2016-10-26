@@ -17,7 +17,10 @@ from pyoauth2 import Client
 
 client = Client(client_id, client_secret)
 
-authorize_url = client.auth_code.authorize_url(redirect_uri=REDIRECT_URL)
+authorize_url = client.auth_code.authorize_url()
+# or use
+# REDIRECT_URL = 'http://localhost:3000'
+# authorize_url = client.auth_code.authorize_url(redirect_uri=REDIRECT_URL)
 print authorize_url
 
 token = client.auth_code.get_token(code)
