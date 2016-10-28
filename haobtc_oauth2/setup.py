@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='haobtc-oauth2',
-    version='0.0.1',
+    version='0.0.2',
     description='haobtc oauth2',
     author='freeza91',
     author_email='useyes91@gmail.com',

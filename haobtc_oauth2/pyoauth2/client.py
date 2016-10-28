@@ -47,7 +47,9 @@ class Client(object):
         return self.token
 
     def get_resource(self, **opts):
-        self.response = self.request('GET', self.resource_url(opts), **opts)
+        params = {'access_token': self.token}
+        opts.update(params)
+        self.response = self.request('GET', self.resource_url(), **opts)
         return self.response.parsed
 
     @property

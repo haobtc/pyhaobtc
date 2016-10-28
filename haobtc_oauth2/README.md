@@ -25,7 +25,9 @@ print authorize_url
 
 token = client.auth_code.get_token(code)
 print token
-user_info = client.auth_code.get_resource()
+
+# use access_token
+user_info = client.get_resource()
 print user_info
 
 ```
@@ -49,6 +51,7 @@ print user_info
 | 40012     | invalid_credencial 未授权|
 | 40013     | invalid_request_scheme 错误的请求协议|
 | 40014     | invalid_request_method 错误的请求方法|
+| 40015     | oauth application blocked oauth 被禁用|
 
 ## License
 
