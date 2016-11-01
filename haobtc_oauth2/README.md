@@ -11,28 +11,59 @@ pip install haobtc-oauth2
 
 ## Usage
 
-```
+### authorize_url
+
+```python
 
 from pyoauth2 import Client
+params = { SITE_URL = 'https://haobtc.com',                 # optional 
+           AUTHORIZE_URL = '/auth/oauth/authorize/',        # optional 
+           TOKEN_URL = '/auth/settings/oauth/get_token/',   # optional   
+           RESOURCE_URL = '/api/v1/user/profile'}           # optional 
 
-client = Client(client_id, client_secret)
+client = Client(client_id, client_secret, params)
 
 authorize_url = client.auth_code.authorize_url()
-# or use
-# REDIRECT_URL = 'http://localhost:3000'
-# authorize_url = client.auth_code.authorize_url(redirect_uri=REDIRECT_URL)
-print authorize_url
+
+print authorize_url # https://haobtc.com/auth/oauth/authorize/?response_type=code&client_id=b3ca01d932e643faa32d
+
+``` 
+
+#### get acccess token 
+
+```python
 
 token = client.auth_code.get_token(code)
-print token
-
-# use access_token
-user_info = client.get_resource()
-print user_info
+print token   # 04a889136a6c412aa658
 
 ```
 
-## oauth 全局返回码说明
+> token is set expired at 7 days.
+
+
+#### get user profile
+
+```python 
+user_info = client.get_user_profile({ 'access_token' : token })
+print user_info
+``` 
+
+```python
+{
+    user_info: {
+        privider: "haobtc",
+        uuid: "604515dd07a74cff97cea1656dd462e1",
+        raw_info: {
+            username: "han",
+            address: "18ojqY44LwUM9qm6iJtZHNHMVsiCRg1dDz"
+        }
+    },
+    code: 0
+}
+```
+
+
+## OAuth 全局返回码说明
 
 | 返回码     | 返回说明   |
 | ----------| -------- |
