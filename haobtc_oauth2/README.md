@@ -38,13 +38,13 @@ print token   # 04a889136a6c412aa658
 
 ```
 
-> token is set expired at 7 days.
+> token will be expired after 7 days.
 
 
 #### get user profile
 
 ```python 
-user_info = client.get_user_profile({ 'access_token' : token })
+user_info = client.get_user_profile(access_token=token)
 print user_info
 ``` 
 
