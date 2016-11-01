@@ -8,7 +8,7 @@ from .libs.connection import Connection
 SITE_URL = 'https://haobtc.com'
 AUTHORIZE_URL = '/auth/oauth/authorize/'
 TOKEN_URL = '/auth/settings/oauth/get_token/'
-RESOURCE_URL = '/auth/settings/oauth/get_resource/'
+RESOURCE_URL = '/api/v1/user/profile'
 
 class Client(object):
 
