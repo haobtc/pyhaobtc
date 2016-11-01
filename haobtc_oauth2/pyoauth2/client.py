@@ -46,7 +46,7 @@ class Client(object):
         self.token = AccessToken.from_hash(self, **opts).token
         return self.token
 
-    def get_resource(self, **opts):
+    def get_user_profile(self, **opts):
         params = {'access_token': self.token}
         opts.update(params)
         self.response = self.request('GET', self.resource_url(), **opts)
