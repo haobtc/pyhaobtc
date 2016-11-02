@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .base import Base
+from .utils import generate_state_random
 
 
 class AuthCode(Base):
@@ -11,7 +12,9 @@ class AuthCode(Base):
         params.update({'response_type': 'code', 'client_id': self.client.id})
         return params
 
-    def authorize_url(self, **params):
+    def authorize_url(self, **opts):
+        params = { 'state': generate_state_random() }
+        params.update(opts)
         params = self.authorize_params(**params)
         return self.client.authorize_url(params)
 
