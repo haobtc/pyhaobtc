@@ -61,7 +61,7 @@ class Request(object):
 
         response = Response(response, parse=self.parse)
         body = response.parsed
-        if body['code'] == 0:
+        if body['ok']:
             return response
         else:
             raise HaobtcOauthError(body['code'], body['message'])
