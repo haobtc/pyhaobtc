@@ -4,13 +4,13 @@
 
 ```
 
-pip install haobtc-oauth2
+pip install bixin-oauth2
 
 ```
 
 ## Usage
 
-see [wiki](https://github.com/haobtc/pyhaobtc/wiki/haobtc-OAuth)
+see [wiki](https://github.com/haobtc/pyhaobtc/wiki/Bixin-OAuth)
 
 ## License
 
