@@ -5,7 +5,7 @@ from .libs.access_token import AccessToken
 from .libs.request import Request
 from .libs.connection import Connection
 
-SITE_URL = 'https://haobtc.com'
+SITE_URL = 'https://bixin.im'
 AUTHORIZE_URL = '/auth/oauth/authorize/'
 TOKEN_URL = '/auth/oauth/get_token/'
 RESOURCE_URL = '/api/v1/user/profile'
