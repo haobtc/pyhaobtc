@@ -5,12 +5,12 @@ from distutils.core import setup
 from setuptools import find_packages
 
 setup(
-    name='haobtc-oauth2',
-    version='0.0.6',
-    description='haobtc oauth2 lib version',
+    name='bixin-oauth2',
+    version='0.0.7',
+    description='bixin oauth2 lib version',
     author='freeza91',
     author_email='useyes91@gmail.com',
-    keywords=('Python', 'pyoauth2', 'haobtc'),
+    keywords=('Python', 'pyoauth2', 'bixin'),
     license='MIT License',
     url='https://github.com/haobtc/pyhaobtc/tree/master/haobtc_oauth2',
     packages=find_packages(),
